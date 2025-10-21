@@ -22,6 +22,7 @@ export async function createClass(_class) {
   const db = getDB();
   _class.created_at = new Date();
   _class.updated_at = new Date();
+  _class.major_id = new ObjectId(_class.major_id);
   const result = await db.collection(collectionName).insertOne(_class);
   return result.insertedId.toString();
 }

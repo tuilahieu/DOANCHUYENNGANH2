@@ -44,7 +44,7 @@ class ClassesController {
       const isExisted = await Classes.getClassByClassName(req.body.class_name);
       console.log(isExisted);
       if (isExisted)
-        res.status(409).json({
+        return res.status(409).json({
           status: false,
           message: "Lớp " + req.body.class_name + " đã tồn tại !",
         });

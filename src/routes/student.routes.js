@@ -2,8 +2,8 @@ import express from "express";
 import { body } from "express-validator";
 import * as StudentController from "../controllers/student.controllers.js";
 import { authenticate, authorize } from "../middlewares/auth.middlewares.js";
-import { validate } from "../utils/validateResult.js";
 import { studentCreateSchema } from "../validations/student.validations.js";
+import { validate } from "../utils/validateResult.js";
 import { checkExtraFields } from "../utils/checkExtraFields.js";
 
 const router = express.Router();
