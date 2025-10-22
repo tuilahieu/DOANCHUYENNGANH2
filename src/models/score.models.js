@@ -16,15 +16,23 @@ export async function getStudentScoreById(id) {
   return await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
 }
 
-/**
- * Lấy thông tin student_study theo ID
- */
 export async function getStudentScoreByStudentId(id) {
   const db = getDB();
   return await db
     .collection(collectionName)
-    .findOne({ student_id: new ObjectId(id) });
+    .find({ student_id: new ObjectId(id) })
+    .toArray();
 }
+
+/**
+ * Lấy thông tin student_study theo ID
+ */
+// export async function getStudentScoreByStudentId(id) {
+//   const db = getDB();
+//   return await db
+//     .collection(collectionName)
+//     .findOne({ student_id: new ObjectId(id) });
+// }
 
 /**
  * Tạo mới bản ghi student_study
@@ -61,15 +69,4 @@ export async function updateStudentStudy(id, data) {
     .updateOne({ _id: new ObjectId(id) }, { $set: updateData });
 
   return result.matchedCount;
-}
-
-/**
- * Xóa bản ghi student_study
- */
-export async function deleteStudentStudy(id) {
-  const db = getDB();
-  const result = await db
-    .collection(collectionName)
-    .deleteOne({ _id: new ObjectId(id) });
-  return result.deletedCount;
 }

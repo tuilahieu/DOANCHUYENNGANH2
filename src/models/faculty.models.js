@@ -8,6 +8,11 @@ export async function getAllFaculties() {
   return await db.collection(collectionName).find().toArray();
 }
 
+export async function getFacultyById(id) {
+  const db = getDB();
+  return await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
+}
+
 export async function getFacultyByName(name) {
   const db = getDB();
   return await db.collection(collectionName).findOne({ name });

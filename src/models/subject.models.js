@@ -8,9 +8,9 @@ export async function getAllSubjects() {
   return await db.collection(collectionName).find().toArray();
 }
 
-export async function getSubjectByName(name) {
+export async function getSubjectById(id) {
   const db = getDB();
-  return await db.collection(collectionName).findOne({ subject_code: name });
+  return await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
 }
 
 export async function createSubject(subject) {

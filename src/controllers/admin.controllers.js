@@ -4,7 +4,7 @@ import * as AdminModel from "../models/admin.models.js";
 export const getAll = async (req, res) => {
   try {
     const admins = await AdminModel.getAllAdmins();
-    res.json(admins);
+    res.json({ status: true, data: admins });
   } catch (err) {
     res.status(500).json({ status: false, message: err.message });
   }
@@ -75,7 +75,7 @@ export const remove = async (req, res) => {
     if (!deleted)
       return res
         .status(404)
-        .json({ status: false, message: "Không tìm thấy quản trị viên này." });
+        .json({ status: false, message: "Không tìm thấy quản trị vi này." });
     res.json({
       status: true,
       message: "Xóa thành công",

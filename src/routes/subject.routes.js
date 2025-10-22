@@ -15,6 +15,12 @@ const validFields = [
   "semester",
 ];
 
+router.get(
+  "/:id",
+  authenticate,
+  // authorize(["Hiệu trưởng"]),
+  SubjectController.getById
+);
 router.use(authenticate, authorize(["Hiệu trưởng"]));
 router.get("/", SubjectController.getAll);
 router.post(

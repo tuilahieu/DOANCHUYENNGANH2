@@ -4,21 +4,23 @@ class StudentStudyController {
   async getAll(req, res) {
     try {
       const studies = await StudentStudies.getAllStudentStudies();
-      res.json(studies);
+      res.json({ status: true, data: studies });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }
   }
 
-  async getById(req, res) {
+  async getByStudentId(req, res) {
     try {
-      const study = await StudentStudies.getStudentStudyById(req.params.id);
+      const study = await StudentStudies.getStudentStudyByStudentId(
+        req.params.id
+      );
       if (!study) {
         return res
           .status(404)
           .json({ status: false, message: "Không tìm thấy dữ liệu." });
       }
-      res.json(study);
+      res.json({ status: true, data: study });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }

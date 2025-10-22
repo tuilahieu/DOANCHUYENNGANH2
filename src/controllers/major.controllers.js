@@ -4,7 +4,16 @@ class MajorController {
   async getAll(req, res) {
     try {
       const faculies = await Majors.getAllMajors();
-      res.json(faculies);
+      res.json({ status: true, data: faculies });
+    } catch (error) {
+      res.status(500).json({ status: false, error: error.message });
+    }
+  }
+
+  async getById(req, res) {
+    try {
+      const faculies = await Majors.getMajorById(req.params.id);
+      res.json({ status: true, data: faculies });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }

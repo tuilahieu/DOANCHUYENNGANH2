@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import {
   connectDB,
@@ -18,6 +19,15 @@ import studentScores from "./routes/score.routes.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
+if (process.env.DEV_MODE) {
+  app.use(cors());
+} else {
+  app.use(
+    cors({
+      origin: process.env.DOMAIN_ALLOWED.split(","),
+    })
+  );
+}
 const port = process.env.PORT || 3000;
 
 app.use("/admin", adminRoutes);

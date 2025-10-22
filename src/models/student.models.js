@@ -6,7 +6,10 @@ const collectionName = "students";
 
 export async function getAllStudents() {
   const db = getDB();
-  return await db.collection(collectionName).find().toArray();
+  return await db
+    .collection("students")
+    .find({}, { projection: { password: 0 } })
+    .toArray();
 }
 
 export async function getStudentById(id) {

@@ -9,6 +9,8 @@ const router = express.Router();
 
 const validFields = ["name", "faculty_id"];
 
+router.get("/:id", authenticate, MajorController.getById);
+
 router.use(authenticate, authorize(["Hiệu trưởng"]));
 router.get("/", MajorController.getAll);
 router.post(

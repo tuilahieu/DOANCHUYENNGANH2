@@ -8,6 +8,11 @@ export async function getAllMajors() {
   return await db.collection(collectionName).find().toArray();
 }
 
+export async function getMajorById(id) {
+  const db = getDB();
+  return await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
+}
+
 export async function getMajorByName(name) {
   const db = getDB();
   return await db.collection(collectionName).findOne({ name });

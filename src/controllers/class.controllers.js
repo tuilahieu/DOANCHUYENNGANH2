@@ -4,7 +4,7 @@ class ClassesController {
   async getAll(req, res) {
     try {
       const classes = await Classes.getAllClasses();
-      res.json(classes);
+      res.json({ status: true, data: classes });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }
@@ -18,7 +18,7 @@ class ClassesController {
           .status(404)
           .json({ status: false, message: "Không có lớp này." });
       }
-      res.json(classData);
+      res.json({ status: true, data: classData });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }
@@ -33,7 +33,7 @@ class ClassesController {
           .status(404)
           .json({ status: false, message: "Không có lớp này." });
       }
-      res.json(classData);
+      res.json({ status: true, data: classData });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }
@@ -74,7 +74,7 @@ class ClassesController {
         return res
           .status(404)
           .json({ status: false, message: "Không tồn tại lớp này." });
-      res.json({ status: "success", message: "Đã cập nhật !!" });
+      res.json({ status: true, message: "Đã cập nhật !!" });
     } catch (error) {
       return res.status(500).json({ status: false, error: error.message });
     }

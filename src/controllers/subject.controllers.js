@@ -4,7 +4,16 @@ class SubjectController {
   async getAll(req, res) {
     try {
       const faculies = await Subjects.getAllSubjects();
-      res.json(faculies);
+      res.json({ status: true, data: faculies });
+    } catch (error) {
+      res.status(500).json({ status: false, error: error.message });
+    }
+  }
+
+  async getById(req, res) {
+    try {
+      const subject = await Subjects.getSubjectById(req.params.id);
+      res.json({ status: true, data: subject });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }

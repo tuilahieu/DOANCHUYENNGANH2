@@ -15,6 +15,8 @@ const validFields = [
   "faculty_id",
 ];
 
+router.get("/:id", authenticate, StudentStudyController.getByStudentId);
+
 router.use(authenticate, authorize(["Hiệu trưởng"]));
 
 router.get("/", StudentStudyController.getAll);

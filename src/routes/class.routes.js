@@ -9,9 +9,9 @@ const router = express.Router();
 
 const validFields = ["class_name", "major_id", "course_year"];
 
+router.get("/:id", authenticate, ClassController.getById);
 router.use(authenticate, authorize(["admin"]));
 router.get("/", ClassController.getAll);
-router.get("/:id", ClassController.getById);
 router.get("/name/:className", ClassController.getByClassName);
 router.post(
   "/",

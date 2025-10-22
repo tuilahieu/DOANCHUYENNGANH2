@@ -3,9 +3,19 @@ import * as Faculties from "../models/faculty.models.js";
 class FacultyController {
   async getAll(req, res) {
     try {
-      const faculies = await Faculties.getAllFaculties();
-      res.json(faculies);
+      const faculties = await Faculties.getAllFaculties();
+      res.json({ status: true, data: faculties });
     } catch (error) {
+      res.status(500).json({ status: false, error: error.message });
+    }
+  }
+  async getById(req, res) {
+    try {
+      // console.log(req.params.id);
+      const faculty = await Faculties.getFacultyById(req.params.id);
+      res.json({ status: true, data: faculty });
+    } catch (error) {
+      console.log(error);
       res.status(500).json({ status: false, error: error.message });
     }
   }

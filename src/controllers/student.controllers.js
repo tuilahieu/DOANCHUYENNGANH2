@@ -3,7 +3,7 @@ import * as Student from "../models/student.models.js";
 export async function getAll(req, res) {
   try {
     const students = await Student.getAllStudents();
-    res.json(students);
+    res.json({ status: true, data: students });
   } catch (error) {
     res.status(500).json({ status: false, error: error.message });
   }
@@ -24,7 +24,7 @@ export async function getById(req, res) {
         .status(404)
         .json({ status: false, message: "Không có sinh viên này." });
     }
-    res.json(student);
+    res.json({ status: true, data: student });
   } catch (error) {
     res.status(500).json({ status: false, error: error.message });
   }
@@ -40,7 +40,7 @@ export async function getByStudentCode(req, res) {
         .status(404)
         .json({ status: false, message: "Không có sinh viên này." });
 
-    res.json(student);
+    res.json({ status: true, data: student });
   } catch (error) {
     res.status(500).json({ status: false, error: error.message });
   }
@@ -56,7 +56,7 @@ export async function create(req, res) {
     }
     const id = await Student.createStudent(req.body);
     res.json({
-      status: "success",
+      status: true,
       message: "Tạo thành công",
       id: id.toString(),
     });

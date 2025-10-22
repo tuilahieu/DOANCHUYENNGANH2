@@ -4,7 +4,7 @@ class StudentScoreController {
   async getAll(req, res) {
     try {
       const studies = await StudentScores.getAllStudentScores();
-      res.json(studies);
+      res.json({ status: true, data: studies });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }
@@ -12,13 +12,17 @@ class StudentScoreController {
 
   async getById(req, res) {
     try {
-      const study = await StudentScores.getStudentStudyById(req.params.id);
+      console.log(req.params.id);
+      const study = await StudentScores.getStudentScoreByStudentId(
+        req.params.id
+      );
       if (!study) {
-        return res
-          .status(404)
-          .json({ status: false, message: "Không tìm thấy dữ liệu." });
+        return res.status(404).json({
+          status: false,
+          message: "Không tìm thấy dữ liệu.",
+        });
       }
-      res.json(study);
+      res.json({ status: true, data: study });
     } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }
@@ -131,23 +135,9 @@ class StudentScoreController {
           .status(404)
           .json({ status: false, message: "Không tồn tại bản ghi này." });
 
-      res.json({ status: "success", message: "Đã cập nhật và tính lại điểm!" });
+      res.json({ status: true, message: "Đã cập nhật và tính lại điểm!" });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ status: false, error: error.message });
-    }
-  }
-
-  async delete(req, res) {
-    try {
-      const deleted = await StudentScores.deleteStudentStudy(req.params.id);
-      if (!deleted)
-        return res
-          .status(404)
-          .json({ status: false, message: "Không có bản ghi này." });
-
-      res.json({ status: true, message: "Xóa thành công!" });
-    } catch (error) {
       res.status(500).json({ status: false, error: error.message });
     }
   }

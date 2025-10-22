@@ -15,6 +15,12 @@ const validFields = [
   "faculty_id",
 ];
 
+router.get(
+  "/:id",
+  authenticate,
+  StudentScoreController.getById.bind(StudentScoreController)
+);
+
 router.use(authenticate, authorize(["Hiệu trưởng"]));
 
 router.get("/", StudentScoreController.getAll);
@@ -25,8 +31,8 @@ router.post(
   validate,
   StudentScoreController.create.bind(StudentScoreController)
 );
-router.put("/:id", StudentScoreController.update.bind(StudentScoreController)); // ✅
+router.put("/:id", StudentScoreController.update.bind(StudentScoreController));
 
-router.delete("/:id", StudentScoreController.delete);
+// router.delete("/:id", StudentScoreController.delete);
 
 export default router;
