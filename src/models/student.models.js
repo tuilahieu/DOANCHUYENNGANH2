@@ -4,11 +4,22 @@ import bcrypt from "bcrypt";
 
 const collectionName = "students";
 
-export async function getAllStudents() {
+// Thêm hàm này vào file Model
+export async function countAllStudents() {
+  const db = getDB();
+  return await db.collection(collectionName).countDocuments({});
+}
+
+export async function getAllStudents(page = 1, limit = 5) {
+  // Tính toán skip DỰA TRÊN tham số đầu vào
+  const skip = (page - 1) * limit;
+
   const db = getDB();
   return await db
-    .collection("students")
+    .collection(collectionName)
     .find({}, { projection: { password: 0 } })
+    .skip(skip) // Dùng giá trị skip đã tính
+    .limit(limit)
     .toArray();
 }
 

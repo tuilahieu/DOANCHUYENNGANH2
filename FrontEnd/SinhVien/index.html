@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Thông tin sinh viên | QLSV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex flex-col items-center justify-center p-6"
+  >
+    <div
+      class="bg-white shadow-xl rounded-2xl p-8 max-w-lg w-full border border-gray-200"
+    >
+      <h1 class="text-2xl font-bold text-center text-blue-700 mb-6">
+        Thông tin sinh viên
+      </h1>
+
+      <!-- Thông tin sinh viên -->
+      <div id="studentInfo" class="text-gray-800 space-y-3 text-lg">
+        <p class="text-center text-gray-500">Đang tải thông tin...</p>
+      </div>
+
+      <!-- Nút điều hướng -->
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <button
+          id="viewScoreBtn"
+          class="w-full sm:w-1/2 bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+        >
+          Điểm học tập
+        </button>
+
+        <button
+          id="nganhHocBtn"
+          class="w-full sm:w-1/2 bg-yellow-500 text-white py-2 rounded-lg font-semibold hover:bg-yellow-600 transition"
+        >
+          Ngành học
+        </button>
+      </div>
+
+      <button
+        id="logoutBtn"
+        class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+      >
+        Đăng xuất
+      </button>
+    </div>
+
+    <!-- Import JS -->
+    <script type="module" src="../js/SinhVienJS/sinhvien.js"></script>
+  </body>
+</html>

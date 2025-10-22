@@ -1,10 +1,43 @@
 import * as Student from "../models/student.models.js";
 
+// Sử dụng hàm getAllStudents(page, limit) và countAllStudents()
+
 export async function getAll(req, res) {
+  // Lấy tham số page và limit từ query string
+  const page = parseInt(req.query.page) || 1;
+  const limit = 5;
+
+  if (page <= 0) {
+    return res.status(400).json({
+      status: false,
+      error: "Tham số page phải là số dương.",
+    });
+  }
+
   try {
-    const students = await Student.getAllStudents();
-    res.json({ status: true, data: students });
+    // 1. Lấy dữ liệu sinh viên cho trang hiện tại (Dùng hàm đã sửa)
+    const students = await Student.getAllStudents(page);
+
+    // 2. Lấy tổng số lượng sinh viên (BẮT BUỘC để tính tổng số trang)
+    const totalItems = await Student.countAllStudents();
+
+    // 3. Tính toán thông tin phân trang
+    const totalPages = Math.ceil(totalItems / limit);
+
+    // 4. Trả về kết quả phân trang đầy đủ
+    res.json({
+      status: true,
+      data: students,
+      pagination: {
+        totalItems: totalItems,
+        currentPage: page,
+        totalPages: totalPages, // TRẢ VỀ TỔNG SỐ TRANG
+        hasNextPage: page < totalPages,
+        hasPrevPage: page > 1,
+      },
+    });
   } catch (error) {
+    console.error("Lỗi khi lấy danh sách sinh viên có phân trang:", error);
     res.status(500).json({ status: false, error: error.message });
   }
 }

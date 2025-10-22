@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QUẢN LÍ SINH VIÊN EAUT</title>
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem("token")) {
+        if (localStorage.getItem("role")) {
+          window.location.href = "/Admin/index.html";
+        } else {
+          window.location.href = "/SinhVien/index.html";
+        }
+      } else {
+        window.location.href = "/Auth/login.html";
+      }
+    </script>
+  </body>
+</html>

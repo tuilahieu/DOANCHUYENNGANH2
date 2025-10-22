@@ -9,6 +9,11 @@ export async function getAllAdmins() {
   return await db.collection(collectionName).find().toArray();
 }
 
+export async function getById(id) {
+  const db = getDB();
+  return await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
+}
+
 export async function getByEmail(email) {
   const db = getDB();
   return await db.collection(collectionName).findOne({ email });

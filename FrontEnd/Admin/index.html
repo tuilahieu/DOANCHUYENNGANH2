@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bảng điều khiển | QLSV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 min-h-screen flex flex-col">
+    <header
+      class="bg-blue-600 text-white py-4 px-6 flex justify-between items-center shadow"
+    >
+      <h1 class="text-xl font-bold">Quản Lý Sinh Viên</h1>
+      <div class="flex items-center space-x-4">
+        <p id="userName" class="font-medium"></p>
+        <button
+          id="logoutBtn"
+          class="bg-white text-blue-600 px-4 py-1 rounded-lg hover:bg-gray-100 transition"
+        >
+          Đăng xuất
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 p-8">
+      <nav class="mb-8">
+        <ul
+          class="flex flex-wrap justify-center space-x-2 sm:space-x-4 p-4 bg-white rounded-2xl shadow-md"
+        >
+          <li>
+            <a
+              href="/"
+              class="inline-block px-4 py-2 text-sm sm:text-base font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition duration-150 ease-in-out"
+            >
+              Thông tin quản trị
+            </a>
+          </li>
+          <li>
+            <a
+              href="./QuanLySinhVien.html"
+              class="inline-block px-4 py-2 text-sm sm:text-base font-medium text-blue-600 bg-blue-100 rounded-lg hover:bg-blue-200 transition duration-150 ease-in-out"
+            >
+              Quản lí Sinh viên
+            </a>
+          </li>
+          <li>
+            <a
+              href="/classes.html"
+              class="inline-block px-4 py-2 text-sm sm:text-base font-medium text-blue-600 bg-blue-100 rounded-lg hover:bg-blue-200 transition duration-150 ease-in-out"
+            >
+              Quản lí Lớp học
+            </a>
+          </li>
+          <li>
+            <a
+              href="/majors.html"
+              class="inline-block px-4 py-2 text-sm sm:text-base font-medium text-blue-600 bg-blue-100 rounded-lg hover:bg-blue-200 transition duration-150 ease-in-out"
+            >
+              Quản lí Ngành
+            </a>
+          </li>
+          <li>
+            <a
+              href="/departments.html"
+              class="inline-block px-4 py-2 text-sm sm:text-base font-medium text-blue-600 bg-blue-100 rounded-lg hover:bg-blue-200 transition duration-150 ease-in-out"
+            >
+              Quản lí Khoa
+            </a>
+          </li>
+          <li>
+            <a
+              href="/scores.html"
+              class="inline-block px-4 py-2 text-sm sm:text-base font-medium text-blue-600 bg-blue-100 rounded-lg hover:bg-blue-200 transition duration-150 ease-in-out"
+            >
+              Quản lí Điểm
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="max-w-3xl mx-auto bg-white shadow rounded-2xl p-8">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800">Thông tin QTV</h2>
+
+        <div id="loadingState" class="text-center py-8 text-gray-500 hidden">
+          <div
+            class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"
+          ></div>
+          Đang tải thông tin...
+        </div>
+
+        <div id="userInfoContainer" class="space-y-4 text-gray-700 hidden">
+          <p>
+            <span class="font-semibold">Quản trị:</span>
+            <span id="displayName"></span>
+          </p>
+          <p>
+            <span class="font-semibold">Email:</span>
+            <span id="displayEmail"></span>
+          </p>
+          <p>
+            <span class="font-semibold">Chức vụ:</span>
+            <span id="displayRole"></span>
+          </p>
+          <p>
+            <span class="font-semibold">Ngày sinh:</span>
+            <span id="displayBirthDay"></span>
+          </p>
+          <p>
+            <span class="font-semibold">Giới tính:</span>
+            <span id="displayGender"></span>
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script type="module" src="../js/AdminJS/admin.js"></script>
+</html>
